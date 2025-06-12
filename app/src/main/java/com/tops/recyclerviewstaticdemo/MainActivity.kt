@@ -1,18 +1,23 @@
 package com.tops.recyclerviewstaticdemo
 
-import android.net.eap.EapSessionConfig
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.tops.recyclerviewstaticdemo.databinding.ActivityMainBinding
+import com.tops.recyclerviewstaticdemo.model.Person
 
 class MainActivity : AppCompatActivity() {
 
+    // Guide:  Apply_RecyclerView_OnClickListenre_to_recycler_item
+    // Below::-----
+    // link->      https://www.geeksforgeeks.org/how-to-apply-onclicklistener-to-recyclerview-items-in-android/
+
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,45 +30,69 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val examlist: MutableList<ExamItem> = ArrayList()
-        examlist.add(
-            ExamItem(
-                "Jay",
-                22,
-                R.drawable.jay
-            )
-        )
-        examlist.add(
-            ExamItem(
-                "Smit",
-                35,
-                R.drawable.img
-            )
-        )
-        examlist.add(
-            ExamItem(
-                "Axay",
-                32,
-                R.drawable.qwert
-            )
-        )
-        examlist.add(
-            ExamItem(
-                "Aryan",
-                16,
-                R.drawable.image22
-            )
-        )
-        examlist.add(
-            ExamItem(
-                "Jayloo Pacho",
-                26,
-                R.drawable.download
-            )
-        )
+//        val personlist: MutableList<Person> = ArrayList()
+//        personlist.add(
+//            Person(
+//                "Jay",
+//                22,
+//                R.drawable.jay
+//            )
+//        )
+//        personlist.add(
+//            Person(
+//                "Smit",
+//                35,
+//                R.drawable.img
+//            )
+//        )
+//        personlist.add(
+//            Person(
+//                "Axay",
+//                32,
+//                R.drawable.qwert
+//            )
+//        )
+//        personlist.add(
+//            Person(
+//                "Aryan",
+//                16,
+//                R.drawable.image22
+//            )
+//        )
+//        personlist.add(
+//            Person(
+//                "Jayloo Pacho",
+//                26,
+//                R.drawable.download
+//            )
+//        )
+
+        val personlist = Constant.getPersonData()
        binding.rvData.layoutManager = LinearLayoutManager(this)
 
-        val adapter = MyAdapter(examlist)
+
+        binding?.rvData?.setHasFixedSize(true)
+
+
+        val adapter = MyAdapter(personlist)
+        // Assign ItemAdapter instance to our RecylerView
         binding.rvData.adapter = adapter
+
+        adapter.setOnClickListener(object: MyAdapter.OnClickListener{
+            override fun onClick(position: Int, model: Person) {
+                val intent = Intent(this@MainActivity, PersonDetails::class.java)
+                // Passing the data to the
+                // EmployeeDetails Activity
+
+                //for putExtra()  Serilizing the m odel is important
+                intent.putExtra(NEXT_SCREEN, model)
+//                intent.putExtra(NEXT_SCREEN, model)
+                startActivity(intent)
+            }
+        })
+    }
+
+    companion object{
+        val NEXT_SCREEN="details_screen"
     }
 }
