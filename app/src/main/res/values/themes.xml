@@ -5,5 +5,12 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+
+<!--    Use this for Removig default Android SplashScreen-->
+    <style name="Theme.RecyclerViewStaticDemoScreen" parent="Base.Theme.RecyclerViewStaticDemo">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+
     <style name="Theme.RecyclerViewStaticDemo" parent="Base.Theme.RecyclerViewStaticDemo" />
 </resources>
