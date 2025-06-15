@@ -17,15 +17,11 @@ class PersonDetails : AppCompatActivity() {
         setContentView(binding.root)
 
 
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
 
         var personlist: Person? =null
 
         if (intent.hasExtra(MainActivity.NEXT_SCREEN)){
+
             // get the Serializable data model class with the details in it
             personlist= intent.getSerializableExtra(MainActivity.NEXT_SCREEN) as Person?
 

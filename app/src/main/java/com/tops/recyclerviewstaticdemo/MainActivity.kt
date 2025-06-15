@@ -84,9 +84,9 @@ class MainActivity : AppCompatActivity() {
                 // Passing the data to the
                 // EmployeeDetails Activity
 
-                //for putExtra()  Serilizing the m odel is important
+                //for putExtra()  Serilizing the model is important
                 intent.putExtra(NEXT_SCREEN, model)
-//                intent.putExtra(NEXT_SCREEN, model)
+
                 startActivity(intent)
             }
         })

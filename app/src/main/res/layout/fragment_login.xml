@@ -46,24 +46,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.034"
-        app:cardCornerRadius="40dp">
+        app:cardCornerRadius="40dp"
+        app:cardElevation="12dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="11dp">
+            android:padding="11dp"
+            android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="11dp"
-                android:layout_marginTop="31dp"
-                android:layout_marginEnd="11dp"
-                android:hint="Username"
+                android:hint="      Username"
+                android:layout_marginTop="15dp"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusTopStart="25dp"
+                app:boxCornerRadiusTopEnd="25dp"
                 app:startIconDrawable="@drawable/user">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -77,13 +77,13 @@
                 android:id="@+id/layout_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_username"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="11dp"
-                android:layout_marginEnd="11dp"
-                android:layout_marginTop="31dp"
-                android:hint="Password"
-                app:startIconDrawable="@drawable/user">
+                android:layout_marginTop="12dp"
+                android:hint="     Password"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusTopEnd="25dp"
+                app:boxCornerRadiusTopStart="25dp"
+                app:endIconMode="password_toggle"
+                app:startIconDrawable="@android:drawable/ic_lock_lock">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etpassword"
@@ -92,7 +92,27 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-        </RelativeLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnlogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="29dp"
+                android:text="LOGIN"
+                android:textStyle="italic"
+                android:textSize="18sp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnsignup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                android:text="SIGNUP"
+                android:textSize="18sp"
+                android:backgroundTint="#969090"/>
+
+
+        </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
