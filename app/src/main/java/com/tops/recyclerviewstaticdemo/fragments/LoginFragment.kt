@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import com.tops.recyclerviewstaticdemo.MainActivity
 import com.tops.recyclerviewstaticdemo.R
 import com.tops.recyclerviewstaticdemo.databinding.FragmentLoginBinding
@@ -33,7 +35,12 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        binding.btnRegister.setOnClickListener {
+            activity?.supportFragmentManager?.commit {
+                setReorderingAllowed(true)
+                replace<RegisterFragment>(R.id.container_login_signup)
+            }
+        }
 
         binding.btnlogin.setOnClickListener {
 
