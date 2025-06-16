@@ -1,6 +1,8 @@
 package com.tops.recyclerviewstaticdemo.fragments
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,6 +24,7 @@ class LoginFragment : Fragment() {
         super.onCreate(savedInstanceState)
      //   binding = FragmentLoginBinding.inflate(layoutInflater)
 
+
     }
 
     override fun onCreateView(
@@ -42,11 +45,20 @@ class LoginFragment : Fragment() {
             }
         }
 
+
         binding.btnlogin.setOnClickListener {
 
+            val sharedPref = activity?.getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
+            val username = sharedPref?.getString(USERNAME,null)
+            val password = sharedPref?.getString(PASSWORD,null)
+
             if (validity()){
-                val intent = Intent(context, MainActivity::class.java)
-                startActivity(intent)
+                if (binding.etusername.text.toString().equals(username) && binding.etpassword.text.toString().equals(password)) {
+                    val intent = Intent(context, MainActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    Toast.makeText(context, "Username Password Not Found!", Toast.LENGTH_LONG).show()
+                }
             }else{
 //                Toast.makeText(this , "Enter Details Properly", Toast.LENGTH_SHORT).show()
                 Toast.makeText(context, "Enter Details Properly", Toast.LENGTH_SHORT).show()
@@ -75,7 +87,7 @@ class LoginFragment : Fragment() {
             binding.etpassword.setError("*Min. size must 8 Char")
             return false
         }else{
-            binding.etpassword.error = "* Atleast 8 char must"
+            binding.etpassword.error = null
         }
 
         //After All this validation

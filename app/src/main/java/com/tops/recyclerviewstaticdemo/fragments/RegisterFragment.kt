@@ -1,5 +1,6 @@
 package com.tops.recyclerviewstaticdemo.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,13 +15,14 @@ import com.tops.recyclerviewstaticdemo.MainActivity
 import com.tops.recyclerviewstaticdemo.R
 import com.tops.recyclerviewstaticdemo.databinding.FragmentRegisterBinding
 
+val USERNAME = "USERNAME"
+val PASSWORD = "PASSWORD"
 
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -37,6 +39,15 @@ class RegisterFragment : Fragment() {
 
         binding.btnRegister.setOnClickListener {
             if (validity()){
+
+                val sharedpref = activity?.getSharedPreferences(getString(R.string.app_name),Context.MODE_PRIVATE)?: return@setOnClickListener
+
+                with(sharedpref.edit()){
+                    putString(USERNAME, binding.etUsername.text.toString())
+                    putString(PASSWORD, binding.etpassword.text.toString())
+                    apply()
+                }
+
                 activity?.supportFragmentManager?.commit {
                     setReorderingAllowed(true)
                     replace<LoginFragment>(R.id.container_login_signup)
