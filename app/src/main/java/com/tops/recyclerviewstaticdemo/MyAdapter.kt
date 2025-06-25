@@ -12,23 +12,16 @@ class MyAdapter(private val personList: List<Person>) : RecyclerView.Adapter<MyA
     private var onClickListener: OnClickListener? = null
 
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ExamViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): ExamViewHolder {
        val binding = ExamCardBinding.inflate(LayoutInflater.from(parent.context), parent,false)
         return ExamViewHolder(binding)
     }
 
-    override fun onBindViewHolder(
-        holder: ExamViewHolder,
-        position: Int
-    ) {
+    override fun onBindViewHolder(holder: ExamViewHolder,position: Int) {
         val ExamItem = personList[position]
         holder.binding.cardName.text = ExamItem.name
         holder.binding.cardAge.text = ExamItem.age.toString()
         holder.binding.imageCard.setImageResource(ExamItem.pic!!)
-
 
         // Set click listener for the item view
         holder.itemView.setOnClickListener {
@@ -36,9 +29,7 @@ class MyAdapter(private val personList: List<Person>) : RecyclerView.Adapter<MyA
         }
     }
 
-    override fun getItemCount(): Int {
-     return personList.size
-    }
+    override fun getItemCount(): Int { return personList.size}
 
     // Set the click listener for the adapter
     fun setOnClickListener(listener: OnClickListener?) {
