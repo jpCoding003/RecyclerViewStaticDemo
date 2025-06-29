@@ -42,6 +42,8 @@ class MainActivity : AppCompatActivity() {
         // Assign ItemAdapter instance to our RecylerView
         binding.rvData.adapter = adapter
 
+
+
         adapter.setOnClickListener(object: MyAdapter.OnClickListener{
             override fun onClick(position: Int, model: Person) {
                 val intent = Intent(this@MainActivity, PersonDetails::class.java)

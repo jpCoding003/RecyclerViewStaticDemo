@@ -7,7 +7,7 @@ import com.tops.recyclerviewstaticdemo.databinding.ExamCardBinding
 import com.tops.recyclerviewstaticdemo.model.Person
 
 
-class MyAdapter(private val personList: List<Person>) : RecyclerView.Adapter<MyAdapter.ExamViewHolder>(){
+class MyAdapter(private val personList: MutableList<Person>) : RecyclerView.Adapter<MyAdapter.ExamViewHolder>(){
 
     private var onClickListener: OnClickListener? = null
 
@@ -27,6 +27,14 @@ class MyAdapter(private val personList: List<Person>) : RecyclerView.Adapter<MyA
         holder.itemView.setOnClickListener {
             onClickListener?.onClick(position, ExamItem)
         }
+        holder.binding.btnDelete.setOnClickListener {
+            removeItem(position)
+        }
+    }
+    fun removeItem(position: Int) {
+        personList.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, personList.size)
     }
 
     override fun getItemCount(): Int { return personList.size}
@@ -35,6 +43,7 @@ class MyAdapter(private val personList: List<Person>) : RecyclerView.Adapter<MyA
     fun setOnClickListener(listener: OnClickListener?) {
         this.onClickListener = listener
     }
+
 
     // Interface for the click listener
     interface OnClickListener {
