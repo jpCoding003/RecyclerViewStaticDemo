@@ -30,42 +30,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-//        val personlist: MutableList<Person> = ArrayList()
-//        personlist.add(
-//            Person(
-//                "Jay",
-//                22,
-//                R.drawable.jay
-//            )
-//        )
-//        personlist.add(
-//            Person(
-//                "Smit",
-//                35,
-//                R.drawable.img
-//            )
-//        )
-//        personlist.add(
-//            Person(
-//                "Axay",
-//                32,
-//                R.drawable.qwert
-//            )
-//        )
-//        personlist.add(
-//            Person(
-//                "Aryan",
-//                16,
-//                R.drawable.image22
-//            )
-//        )
-//        personlist.add(
-//            Person(
-//                "Jayloo Pacho",
-//                26,
-//                R.drawable.download
-//            )
-//        )
 
         val personlist = Constant.getPersonData()
        binding.rvData.layoutManager = LinearLayoutManager(this)
